@@ -3,548 +3,612 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LSV Bewerbung</title>
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rock+Salt&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<title>LSV — Leader Bewerbung</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 
-body{
-  background:#111008;
-  color:#ddd;
-  font-family:'Kalam',cursive;
-  overflow-x:hidden;
-  line-height:1.6;
+body {
+  background: #0f0c00;
+  color: #e8d060;
+  font-family: 'Special Elite', cursive;
+  overflow-x: hidden;
 }
 
-/* ─── HERO ─── */
-.hero{
-  min-height:100vh;
-  background:#0a0800;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  padding:40px 20px;
-}
-
-/* gelbe schräge Fläche links */
-.hero::before{
+/* Grunge Textur */
+body::before {
   content:'';
-  position:absolute;
-  top:0;left:-5%;
-  width:48%;height:100%;
-  background:#f5c800;
-  transform:skewX(-6deg);
-  transform-origin:top;
-  z-index:0;
+  position:fixed;
+  inset:0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9998;
 }
 
-/* grunge lines */
-.hero::after{
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 0 60px 0;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Spray-Paint Hintergrund simulieren */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 30% 50%, rgba(245,200,0,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 75% 30%, rgba(200,80,0,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(20,15,0,0.95) 0%, #000 100%);
+}
+
+/* Diagonaler Balken */
+.hero-stripe {
+  position: absolute;
+  top: 0; left: -10%;
+  width: 55%;
+  height: 100%;
+  background: #f5c800;
+  transform: skewX(-8deg);
+  transform-origin: top left;
+  opacity: 0.92;
+  z-index: 1;
+}
+
+.hero-stripe::after {
   content:'';
   position:absolute;
   inset:0;
-  background:repeating-linear-gradient(
-    0deg,transparent,transparent 3px,
-    rgba(0,0,0,0.03) 3px,rgba(0,0,0,0.03) 4px
+  background: repeating-linear-gradient(
+    -55deg, transparent, transparent 6px,
+    rgba(0,0,0,0.06) 6px, rgba(0,0,0,0.06) 7px
   );
-  z-index:1;
-  pointer-events:none;
 }
 
-.hero-inner{
-  position:relative;
-  z-index:10;
-  width:100%;
-  max-width:1000px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
+/* Skull riesig im Hintergrund */
+.hero-skull-bg {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%) rotate(5deg);
+  font-size: 38vw;
+  opacity: 0.04;
+  z-index: 2;
+  line-height: 1;
+  pointer-events: none;
+  filter: grayscale(1);
 }
 
-/* LINKS */
-.hl{padding:20px 10px 20px 30px;}
-
-.hl-small{
-  font-family:'Kalam',cursive;
-  font-size:0.8rem;
-  color:rgba(0,0,0,0.5);
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  margin-bottom:10px;
-  display:block;
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: end;
 }
 
-.hl-gang{
-  font-family:'Permanent Marker',cursive;
-  font-size:clamp(2.8rem,8vw,7rem);
-  color:#000;
-  line-height:0.88;
-  letter-spacing:-0.02em;
+.hero-left-block {
+  padding-bottom: 20px;
 }
 
-.hl-gang b{
-  display:block;
-  color:#8b3a00;
-  font-size:0.6em;
-  -webkit-text-stroke:1px #000;
+.hero-stamp {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: rgba(0,0,0,0.55);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  background: #f5c800;
+  display: inline-block;
+  padding: 4px 12px;
+  transform: rotate(-1.5deg);
+  margin-left: -4px;
 }
 
-.hl-line{
-  width:80px;height:4px;
-  background:#000;
-  margin:18px 0;
-  transform:rotate(-1deg);
+.hero-main-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(4rem, 11vw, 9rem);
+  line-height: 0.85;
+  color: #000;
+  letter-spacing: -0.02em;
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin-left: 8px;
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.15);
 }
 
-.hl-sub{
-  font-family:'Kalam',cursive;
-  font-size:0.82rem;
-  color:rgba(0,0,0,0.55);
-  text-transform:uppercase;
-  letter-spacing:0.12em;
+.hero-main-title span {
+  display: block;
+  color: #c05000;
+  font-size: 0.55em;
+  transform: rotate(1.5deg);
+  margin-top: -8px;
 }
 
-/* RECHTS */
-.hr{padding:20px;}
-
-.hr-bew{
-  font-family:'Rock Salt',cursive;
-  font-size:0.6rem;
-  color:#c05000;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  margin-bottom:14px;
-  display:block;
+.hero-right-block {
+  text-align: right;
+  padding-bottom: 20px;
+  padding-right: 20px;
 }
 
-.hr-title{
-  font-family:'Permanent Marker',cursive;
-  font-size:clamp(3rem,9vw,8rem);
-  color:#f5c800;
-  line-height:0.85;
-  text-shadow:3px 3px 0 rgba(0,0,0,0.7),0 0 40px rgba(245,200,0,0.2);
-  letter-spacing:-0.01em;
+.hero-gang-label {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  color: #f5c800;
+  line-height: 1.1;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.8), 0 0 30px rgba(245,200,0,0.3);
+  transform: rotate(1deg);
+  display: inline-block;
 }
 
-.hr-title em{
-  font-style:normal;
-  display:block;
-  color:#fff;
-  font-size:0.45em;
-  letter-spacing:0.05em;
-  margin-top:6px;
+.hero-info-right {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
 }
 
-.hr-infos{
-  margin-top:28px;
-  display:flex;
-  flex-direction:column;
-  gap:5px;
+.hir {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.78rem;
+  color: rgba(232,208,96,0.7);
+  letter-spacing: 0.1em;
 }
 
-.hri{
-  font-family:'Kalam',cursive;
-  font-size:0.85rem;
-  color:rgba(220,200,80,0.6);
-  display:flex;
-  gap:8px;
+.hir strong {
+  color: #fff;
+  font-size: 0.9rem;
 }
 
-.hri strong{color:#fff;font-size:0.95rem;}
-
-/* ─── NAV ─── */
-nav{
-  background:#f5c800;
-  border-top:3px solid #000;
-  border-bottom:3px solid #000;
-  display:flex;
-  overflow-x:auto;
-  position:sticky;
-  top:0;
-  z-index:999;
+/* ── NAV ── */
+nav {
+  background: #f5c800;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+  padding: 0;
+  display: flex;
+  overflow-x: auto;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.nav-logo{
-  font-family:'Permanent Marker',cursive;
-  font-size:1.15rem;
-  background:#000;
-  color:#f5c800;
-  padding:10px 22px;
-  display:flex;
-  align-items:center;
-  flex-shrink:0;
-  letter-spacing:0.08em;
+nav a {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+  text-decoration: none;
+  padding: 13px 20px;
+  border-right: 2px solid rgba(0,0,0,0.15);
+  white-space: nowrap;
+  transition: background 0.15s;
 }
 
-nav a{
-  font-family:'Kalam',cursive;
-  font-size:0.75rem;
-  color:#000;
-  text-decoration:none;
-  padding:12px 16px;
-  border-right:1px solid rgba(0,0,0,0.12);
-  white-space:nowrap;
-  display:flex;
-  align-items:center;
-  letter-spacing:0.06em;
-  transition:background 0.1s;
-}
-nav a:hover{background:#000;color:#f5c800;}
+nav a:hover { background: #000; color: #f5c800; }
 
-/* ─── PAGE ─── */
-.page{max-width:900px;margin:0 auto;padding:0 24px;}
-
-/* ─── KAPITEL TRENNLINIE ─── */
-.kap{
-  padding:60px 0 10px;
-  opacity:0;
-  transform:translateY(16px);
-  transition:opacity 0.5s,transform 0.5s;
-}
-.kap.visible{opacity:1;transform:none;}
-
-.kap-num{
-  font-family:'Rock Salt',cursive;
-  font-size:0.6rem;
-  color:#c05000;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  margin-bottom:6px;
-  display:block;
+.nav-brand {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2rem;
+  color: #000;
+  padding: 8px 22px;
+  background: #000;
+  color: #f5c800;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.kap-title{
-  font-family:'Permanent Marker',cursive;
-  font-size:clamp(1.8rem,5vw,3.2rem);
-  color:#f5c800;
-  line-height:1;
-  display:inline-block;
-  transform:rotate(-1.2deg);
-  text-shadow:2px 2px 0 rgba(0,0,0,0.5);
+/* ── SECTIONS ── */
+section {
+  padding: 70px 6% 60px;
+  max-width: 1150px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+section.visible { opacity:1; transform:none; }
+
+/* Kapitel-Header — handgeschrieben wirkend */
+.ch {
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
 }
 
-.kap-rule{
-  border:none;
-  border-top:2px solid rgba(245,200,0,0.2);
-  margin:14px 0 36px;
-  transform:rotate(-0.2deg);
+.ch-num {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.75rem;
+  color: #c05000;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
 }
 
-/* ─── PROFIL ─── */
-.profil{
-  display:flex;
-  flex-direction:column;
+.ch-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  color: #f5c800;
+  line-height: 1;
+  transform: rotate(-0.8deg);
+  display: inline-block;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.6);
 }
 
-.prow{
-  display:flex;
-  border-bottom:1px dashed rgba(245,200,0,0.15);
-  transition:background 0.1s;
-}
-.prow:hover{background:rgba(245,200,0,0.04);}
-
-.pk{
-  font-family:'Kalam',cursive;
-  font-size:0.75rem;
-  text-transform:uppercase;
-  letter-spacing:0.1em;
-  color:rgba(220,200,80,0.45);
-  width:170px;
-  flex-shrink:0;
-  padding:13px 16px 13px 4px;
-  border-right:2px solid rgba(245,200,0,0.12);
-}
-
-.pv{
-  font-family:'Kalam',cursive;
-  font-size:1rem;
-  color:#fff;
-  padding:13px 0 13px 18px;
-  font-weight:700;
-}
-
-/* ─── WARUM ─── */
-.warum-text{
-  font-family:'Kalam',cursive;
-  font-size:0.95rem;
-  line-height:2;
-  color:rgba(220,200,100,0.8);
-  padding:22px 26px;
-  background:rgba(245,200,0,0.03);
-  border-left:3px solid rgba(245,200,0,0.3);
-  margin-bottom:24px;
-  position:relative;
-}
-
-.warum-text::before{
-  content:'"';
-  font-family:'Permanent Marker',cursive;
-  font-size:5rem;
-  color:rgba(245,200,0,0.07);
-  position:absolute;
-  top:-10px;left:8px;
-  line-height:1;
-  pointer-events:none;
-}
-
-.taglist{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.tag{
-  font-family:'Kalam',cursive;
-  font-size:0.75rem;
-  padding:6px 14px;
-  border:1px solid rgba(245,200,0,0.3);
-  color:rgba(220,200,80,0.8);
-  letter-spacing:0.06em;
-  transition:all 0.12s;
-}
-/* leicht unterschiedlich rotiert */
-.tag:nth-child(1){transform:rotate(-1deg)}
-.tag:nth-child(2){transform:rotate(0.5deg)}
-.tag:nth-child(3){transform:rotate(-0.3deg)}
-.tag:nth-child(4){transform:rotate(0.8deg)}
-.tag:nth-child(5){transform:rotate(-0.6deg)}
-.tag:hover{background:#f5c800;color:#000;border-color:#f5c800;transform:rotate(0)scale(1.04)}
-
-/* ─── XP ─── */
-.xp-list{display:flex;flex-direction:column;gap:2px;margin-top:6px;}
-
-.xp-cat{
-  font-family:'Kalam',cursive;
-  font-size:0.72rem;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:#c05000;
-  padding:10px 4px 6px;
-  border-bottom:1px dashed rgba(245,200,0,0.12);
-  margin-bottom:4px;
-}
-
-.xp-row{
-  display:flex;
-  align-items:center;
-  padding:11px 16px;
-  background:rgba(245,200,0,0.025);
-  border-left:2px solid transparent;
-  transition:all 0.12s;
-  gap:12px;
-}
-.xp-row:hover{border-left-color:#f5c800;background:rgba(245,200,0,0.05);}
-.xp-row.v{border-left-color:#f5c800;}
-
-.xp-orga{
-  font-family:'Kalam',cursive;
-  font-size:0.9rem;
-  color:#ddd;
-  flex:1;
-}
-
-.xp-badge{
-  font-family:'Kalam',cursive;
-  font-size:0.78rem;
-  color:#f5c800;
-  white-space:nowrap;
-  letter-spacing:0.06em;
-}
-.xp-badge.v{
-  background:#f5c800;
-  color:#000;
-  padding:2px 10px;
-  font-weight:700;
-}
-
-/* ─── RP KARTEN ─── */
-.rp-list{display:flex;flex-direction:column;gap:12px;}
-
-.rp{
-  display:flex;
-  border:1px solid rgba(245,200,0,0.1);
-  background:rgba(245,200,0,0.02);
-  overflow:hidden;
-  transition:border-color 0.12s;
-}
-.rp:hover{border-color:rgba(245,200,0,0.28);}
-
-/* leicht verschieden eingerückt */
-.rp:nth-child(2){margin-left:16px;}
-.rp:nth-child(3){margin-left:8px;margin-right:18px;}
-
-.rp-n{
-  font-family:'Permanent Marker',cursive;
-  font-size:1.8rem;
-  background:#f5c800;
-  color:#000;
-  padding:18px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-width:58px;
-  flex-shrink:0;
-}
-
-.rp-body{padding:18px 22px;}
-
-.rp-t{
-  font-family:'Permanent Marker',cursive;
-  font-size:1rem;
-  color:#f5c800;
-  margin-bottom:8px;
-  transform:rotate(-0.4deg);
-  display:inline-block;
-}
-
-.rp-p{
-  font-family:'Kalam',cursive;
-  font-size:0.85rem;
-  line-height:1.8;
-  color:rgba(220,200,80,0.75);
-}
-
-/* ─── RANG ─── */
-.rang-list{display:flex;flex-direction:column;gap:1px;}
-
-.ri{
-  display:flex;
-  align-items:stretch;
-  border-left:3px solid transparent;
-  background:rgba(245,200,0,0.02);
-  transition:all 0.12s;
-}
-.ri:hover{border-left-color:#f5c800;background:rgba(245,200,0,0.05);}
-.ri.top{border-left-color:#f5c800;background:rgba(245,200,0,0.05);}
-.ri.rot{border-left-color:#c0392b;background:rgba(192,57,43,0.04);}
-
-.ri-n{
-  font-family:'Permanent Marker',cursive;
-  font-size:1.4rem;
-  color:rgba(245,200,0,0.18);
-  width:48px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-shrink:0;
-  border-right:1px solid rgba(245,200,0,0.06);
-  padding:10px 0;
-}
-.ri.top .ri-n{color:#f5c800;}
-.ri.rot .ri-n{color:#c0392b;}
-
-.ri-name{
-  font-family:'Kalam',cursive;
-  font-size:0.95rem;
-  font-weight:700;
-  color:#ddd;
-  padding:11px 16px;
-  display:flex;
-  align-items:center;
-  min-width:180px;
-}
-.ri.rot .ri-name{color:#c0392b;}
-
-.ri-desc{
-  font-family:'Kalam',cursive;
-  font-size:0.72rem;
-  color:rgba(220,200,80,0.35);
-  padding:0 14px;
-  display:flex;
-  align-items:center;
-  margin-left:auto;
-}
-
-/* ─── BEITRITT ─── */
-.beit{display:flex;flex-direction:column;}
-
-.beit-item{
-  display:flex;
-  gap:14px;
-  padding:14px 6px;
-  border-bottom:1px dashed rgba(245,200,0,0.12);
-  font-family:'Kalam',cursive;
-  font-size:0.9rem;
-  color:rgba(220,200,80,0.8);
-  line-height:1.6;
-  transition:background 0.1s;
-}
-.beit-item:hover{background:rgba(245,200,0,0.03);}
-
-.beit-arr{
-  font-family:'Permanent Marker',cursive;
-  font-size:1rem;
-  color:#f5c800;
-  flex-shrink:0;
-  margin-top:2px;
-}
-
-/* ─── FOOTER ─── */
-footer{
-  margin-top:60px;
-  background:#f5c800;
-  padding:50px 6%;
-  position:relative;
-  overflow:hidden;
-  border-top:4px solid #000;
-}
-
-footer::before{
-  content:'💀';
-  position:absolute;
-  right:4%;top:50%;
-  transform:translateY(-50%) rotate(-5deg);
-  font-size:18rem;
-  opacity:0.06;
-  pointer-events:none;
-  line-height:1;
-}
-
-footer::after{
+/* Underline-Strich handgemacht */
+.ch::after {
   content:'';
-  position:absolute;inset:0;
-  background:repeating-linear-gradient(
-    45deg,transparent,transparent 7px,
-    rgba(0,0,0,0.025) 7px,rgba(0,0,0,0.025) 8px
+  display:block;
+  height:3px;
+  background: #f5c800;
+  margin-top:8px;
+  width: 110%;
+  margin-left: -5%;
+  opacity:0.5;
+  transform: rotate(-0.3deg) skewX(-2deg);
+}
+
+/* ── PROFIL ── */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Special Elite', cursive;
+}
+
+.profile-table tr {
+  border-bottom: 1px dashed rgba(245,200,0,0.2);
+  transition: background 0.1s;
+}
+
+.profile-table tr:hover { background: rgba(245,200,0,0.04); }
+
+.profile-table td {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.profile-table td:first-child {
+  color: rgba(232,208,96,0.5);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  width: 180px;
+  border-right: 2px solid rgba(245,200,0,0.15);
+}
+
+.profile-table td:last-child {
+  color: #fff;
+  font-size: 1rem;
+  padding-left: 24px;
+}
+
+/* ── WARUM LEADER ── */
+.why-text {
+  font-size: 0.95rem;
+  line-height: 2;
+  color: rgba(232,208,96,0.85);
+  margin-bottom: 32px;
+  padding: 24px 28px;
+  background: rgba(245,200,0,0.04);
+  border-left: 4px solid #f5c800;
+  position: relative;
+}
+
+.why-text::before {
+  content: '"';
+  font-family: 'Permanent Marker', cursive;
+  font-size: 6rem;
+  color: rgba(245,200,0,0.08);
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  line-height: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.tag {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border: 1px solid rgba(245,200,0,0.35);
+  color: rgba(232,208,96,0.8);
+  background: transparent;
+  transform: rotate(var(--r, 0deg));
+  transition: all 0.15s;
+}
+
+.tag:nth-child(odd) { --r: -0.8deg; }
+.tag:nth-child(even) { --r: 0.6deg; }
+.tag:hover { background: #f5c800; color: #000; border-color: #f5c800; transform: rotate(0deg) scale(1.03); }
+
+/* ── XP ── */
+.xp-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.xp-item {
+  display: flex;
+  align-items: center;
+  padding: 13px 18px;
+  background: rgba(245,200,0,0.03);
+  border: 1px solid rgba(245,200,0,0.08);
+  border-left: 3px solid transparent;
+  gap: 16px;
+  transition: all 0.15s;
+}
+
+.xp-item:hover { border-left-color: #f5c800; background: rgba(245,200,0,0.06); }
+.xp-item.v { border-left-color: #f5c800; background: rgba(245,200,0,0.07); }
+
+.xp-cat-label {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c05000;
+  padding: 10px 18px 6px;
+  border-bottom: 1px dashed rgba(245,200,0,0.12);
+  margin-bottom: 3px;
+}
+
+.xp-orga {
+  flex: 1;
+  font-family: 'Special Elite', cursive;
+  font-size: 0.92rem;
+  color: #fff;
+}
+
+.xp-rang {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.85rem;
+  color: #f5c800;
+  white-space: nowrap;
+}
+
+.xp-rang.v {
+  background: #f5c800;
+  color: #000;
+  padding: 3px 12px;
+}
+
+/* ── RP KARTEN — unregelmäßig ── */
+.rp-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rp-c {
+  background: rgba(245,200,0,0.03);
+  border: 1px solid rgba(245,200,0,0.1);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  transition: border-color 0.15s;
+}
+
+.rp-c:hover { border-color: rgba(245,200,0,0.3); }
+
+/* Leicht unterschiedliche Breiten für den "manuellen" Look */
+.rp-c:nth-child(2) { margin-left: 20px; }
+.rp-c:nth-child(3) { margin-left: 5px; margin-right: 25px; }
+
+.rp-n {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem;
+  background: #f5c800;
+  color: #000;
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 65px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  letter-spacing: 0.1em;
+}
+
+.rp-body { padding: 20px 24px; }
+
+.rp-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  color: #f5c800;
+  margin-bottom: 10px;
+  transform: rotate(-0.5deg);
+  display: inline-block;
+}
+
+.rp-txt {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(232,208,96,0.8);
+}
+
+/* ── RANGKONZEPT ── */
+.rang-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ri {
+  display: flex;
+  align-items: stretch;
+  border-left: 3px solid transparent;
+  transition: all 0.15s;
+  overflow: hidden;
+}
+
+.ri:hover { border-left-color: #f5c800; }
+.ri.top { border-left-color: #f5c800; }
+.ri.snitch { border-left-color: #c0392b; }
+
+.ri-n {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5rem;
+  color: rgba(245,200,0,0.2);
+  width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245,200,0,0.025);
+  border-right: 1px solid rgba(245,200,0,0.06);
+  flex-shrink: 0;
+  padding: 10px 0;
+}
+
+.ri.top .ri-n { color: #f5c800; }
+.ri.snitch .ri-n { color: #c0392b; }
+
+.ri-name {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  letter-spacing: 0.04em;
+}
+
+.ri.snitch .ri-name { color: #c0392b; }
+
+.ri-desc {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.72rem;
+  color: rgba(232,208,96,0.4);
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.05em;
+  margin-left: auto;
+}
+
+/* ── BEITRITT ── */
+.beitritt-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bi {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba(245,200,0,0.03);
+  border-bottom: 1px dashed rgba(245,200,0,0.15);
+  font-size: 0.92rem;
+  color: rgba(232,208,96,0.85);
+  line-height: 1.6;
+}
+
+.bi-bullet {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem;
+  color: #f5c800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── FOOTER ── */
+footer {
+  margin-top: 40px;
+  background: #f5c800;
+  padding: 50px 6%;
+  position: relative;
+  overflow: hidden;
+  border-top: 4px solid #000;
+}
+
+footer::before {
+  content: '💀';
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-8deg);
+  font-size: 14rem;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 8px,
+    rgba(0,0,0,0.03) 8px, rgba(0,0,0,0.03) 9px
   );
-  pointer-events:none;
+  pointer-events: none;
 }
 
-.fi{position:relative;z-index:1;}
+.footer-inner { position: relative; z-index: 1; }
 
-.ft{
-  font-family:'Permanent Marker',cursive;
-  font-size:clamp(2rem,7vw,5rem);
-  color:#000;
-  line-height:0.88;
-  transform:rotate(-1deg);
-  display:inline-block;
-  margin-bottom:18px;
-}
-.ft span{color:#7a2f00;-webkit-text-stroke:1px #000;}
-
-.fd{
-  font-family:'Kalam',cursive;
-  font-size:0.78rem;
-  text-transform:uppercase;
-  letter-spacing:0.15em;
-  color:rgba(0,0,0,0.45);
-  line-height:2.2;
+.footer-gang {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  color: #000;
+  line-height: 0.9;
+  transform: rotate(-1deg);
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:#111008}
-::-webkit-scrollbar-thumb{background:#f5c800}
+.footer-gang span {
+  color: #8b3a00;
+  -webkit-text-stroke: 1px #000;
+}
 
-@media(max-width:680px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero::before{width:100%;transform:none;clip-path:polygon(0 0,100% 0,100% 40%,0 60%);}
-  .ri-desc{display:none}
-  .rp:nth-child(2),.rp:nth-child(3){margin:0}
+.footer-details {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.5);
+  line-height: 2;
+}
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0f0c00; }
+::-webkit-scrollbar-thumb { background: #f5c800; }
+
+@media(max-width:700px) {
+  .hero-content { grid-template-columns:1fr; }
+  .hero-right-block { text-align:left; padding:30px 0 0; }
+  .hero-stripe { width:100%; clip-path:none; }
+  .rp-c:nth-child(2), .rp-c:nth-child(3) { margin:0; }
+  .ri-desc { display:none; }
+  section { padding:50px 5% 40px; }
 }
 </style>
 </head>
@@ -552,24 +616,25 @@ footer::after{
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-inner">
-    <div class="hl">
-      <span class="hl-small">// Grand RP · Bewerbung</span>
-      <div class="hl-gang">LOS<br>SANTOS<br><b>VAGOS</b></div>
-      <div class="hl-line"></div>
-      <div class="hl-sub">Leader Bewerbung 2025</div>
-    </div>
-    <div class="hr">
-      <span class="hr-bew">Bewerbung als</span>
-      <div class="hr-title">
-        LEADER<em>der Gang</em>
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-skull-bg">💀</div>
+
+  <div class="hero-content">
+    <div class="hero-left-block">
+      <div class="hero-stamp">// Grand RP · Bewerbung</div>
+      <div class="hero-main-title">
+        LEADER<span>werden.</span>
       </div>
-      <div class="hr-infos">
-        <div class="hri">OOC → <strong>Marvin</strong></div>
-        <div class="hri">IC → <strong>Marvin Benko</strong></div>
-        <div class="hri">Pass → <strong>#158679</strong></div>
-        <div class="hri">Discord → <strong>marvinbb</strong></div>
-        <div class="hri">Visum → <strong>45</strong></div>
+    </div>
+    <div class="hero-right-block">
+      <div class="hero-gang-label">Los Santos<br>Vagos</div>
+      <div class="hero-info-right">
+        <div class="hir"><strong>Marvin</strong> &nbsp;·&nbsp; OOC</div>
+        <div class="hir"><strong>Marvin Benko</strong> &nbsp;·&nbsp; IC</div>
+        <div class="hir"><strong>#158679</strong> &nbsp;·&nbsp; Reisepass</div>
+        <div class="hir"><strong>marvinbb</strong> &nbsp;·&nbsp; Discord</div>
+        <div class="hir"><strong>Visum 45</strong></div>
       </div>
     </div>
   </div>
@@ -577,7 +642,7 @@ footer::after{
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">LSV</div>
+  <div class="nav-brand">LSV</div>
   <a href="#about">Über mich</a>
   <a href="#why">Warum Leader</a>
   <a href="#xp">Erfahrung</a>
@@ -586,143 +651,164 @@ footer::after{
   <a href="#beitritt">Beitritt</a>
 </nav>
 
-<div class="page">
-
 <!-- 01 -->
-<div class="kap" id="about">
-  <span class="kap-num">// 01</span>
-  <div class="kap-title">Über mich</div>
-  <hr class="kap-rule">
-  <div class="profil">
-    <div class="prow"><div class="pk">Name (RL)</div><div class="pv">Marvin</div></div>
-    <div class="prow"><div class="pk">Alter</div><div class="pv">17 Jahre</div></div>
-    <div class="prow"><div class="pk">IC Name</div><div class="pv">Marvin Benko</div></div>
-    <div class="prow"><div class="pk">Reisepass</div><div class="pv">#158679</div></div>
-    <div class="prow"><div class="pk">Discord</div><div class="pv">marvinbb</div></div>
-    <div class="prow"><div class="pk">Visumsstufe</div><div class="pv">45</div></div>
+<section id="about">
+  <div class="ch">
+    <span class="ch-num">// 01</span>
+    <div class="ch-title">Über mich</div>
   </div>
-</div>
+  <table class="profile-table">
+    <tr><td>Name (RL)</td><td>Marvin</td></tr>
+    <tr><td>Alter</td><td>17 Jahre</td></tr>
+    <tr><td>IC Name</td><td>Marvin Benko</td></tr>
+    <tr><td>Reisepass</td><td>#158679</td></tr>
+    <tr><td>Discord</td><td>marvinbb</td></tr>
+    <tr><td>Visumsstufe</td><td>45</td></tr>
+  </table>
+</section>
 
 <!-- 02 -->
-<div class="kap" id="why">
-  <span class="kap-num">// 02</span>
-  <div class="kap-title">Warum ich Leader werden will</div>
-  <hr class="kap-rule">
-  <div class="warum-text">
-    Ich bin bereit die Verantwortung zu tragen die unsere Gang braucht um stärker, vereinter und respektierter zu werden. Als Leader bring ich nicht nur Entschlossenheit mit sondern auch die Fähigkeit kluge Entscheidungen zu treffen. Ich kenn unsere Werte und ich weiß wie wichtig Zusammenhalt ist. Ich steh für jeden ein — mit Stolz, mit Herz, mit den Vagos.
+<section id="why">
+  <div class="ch">
+    <span class="ch-num">// 02</span>
+    <div class="ch-title">Warum ich Leader werden will</div>
   </div>
-  <div class="taglist">
+  <div class="why-text">
+    Ich bin bereit, die Verantwortung zu tragen, die unsere Gang braucht, um stärker, vereinter und respektierter zu werden. Als Leader bringe ich nicht nur Entschlossenheit und Mut mit, sondern auch die Fähigkeit, kluge Entscheidungen zu treffen. Ich kenne unsere Werte und Ziele und weiß, wie wichtig Zusammenhalt und Loyalität in jeder Situation sind. Ich stehe für jeden in unserer Familie ein — mit Stolz, mit Herz, mit den Vagos.
+  </div>
+  <div class="tags">
     <span class="tag">🤝 Zusammenhalt</span>
-    <span class="tag">💛 Respekt</span>
-    <span class="tag">📈 Einfluss</span>
-    <span class="tag">🏴 Ghetto</span>
-    <span class="tag">💪 Stärke</span>
+    <span class="tag">💛 Respekt sichern</span>
+    <span class="tag">📈 Einfluss ausbauen</span>
+    <span class="tag">🏴 Ghetto kontrollieren</span>
+    <span class="tag">💪 Stärke zeigen</span>
   </div>
-</div>
+</section>
 
 <!-- 03 -->
-<div class="kap" id="xp">
-  <span class="kap-num">// 03</span>
-  <div class="kap-title">Meine Erfahrung</div>
-  <hr class="kap-rule">
-  <p style="font-family:'Kalam',cursive;font-size:0.88rem;line-height:1.9;margin-bottom:22px;color:rgba(220,200,80,0.65);">
-    Ich hab in vielen Gangs auf Grand RP hohe Ränge erreicht. Zweimal war ich
-    <strong style="color:#f5c800;">Vize-Leader (Rang 11)</strong> — bei den GSF und bei den Vagos selbst.
-  </p>
-  <div class="xp-list">
-    <div class="xp-cat">⚔️ Gang / Kriminell</div>
-    <div class="xp-row v"><div class="xp-orga">Los Santos Vagos</div><div class="xp-badge v">Rang 11 — Vize Leader</div></div>
-    <div class="xp-row v"><div class="xp-orga">Grove Street Families</div><div class="xp-badge v">Rang 11 — Vize Leader</div></div>
-    <div class="xp-row"><div class="xp-orga">Ballas</div><div class="xp-badge">Rang 10</div></div>
-    <div class="xp-row"><div class="xp-orga">Marabunta Grande</div><div class="xp-badge">Rang 10</div></div>
-    <div class="xp-row"><div class="xp-orga">Bloods</div><div class="xp-badge">Rang 10</div></div>
-    <div class="xp-row"><div class="xp-orga">Weitere Orgas</div><div class="xp-badge">Rang 10</div></div>
+<section id="xp">
+  <div class="ch">
+    <span class="ch-num">// 03</span>
+    <div class="ch-title">Meine Erfahrung</div>
   </div>
-</div>
+  <p style="font-size:0.88rem;line-height:1.9;margin-bottom:28px;color:rgba(232,208,96,0.7);">
+    Ich habe in zahlreichen Gangs auf Grand RP hohe Ränge erreicht. Zweimal war ich
+    <strong style="color:#f5c800;font-family:'Permanent Marker',cursive;">Vize-Leader (Rang 11)</strong> —
+    bei den Grove Street Families und bei den Vagos selbst.
+  </p>
+  <div class="xp-block">
+    <div class="xp-cat-label">⚔️ Gang / Kriminell</div>
+    <div class="xp-item v">
+      <div class="xp-orga">Los Santos Vagos</div>
+      <div class="xp-rang v">Rang 11 — Vize Leader</div>
+    </div>
+    <div class="xp-item v">
+      <div class="xp-orga">Grove Street Families</div>
+      <div class="xp-rang v">Rang 11 — Vize Leader</div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-orga">Ballas</div>
+      <div class="xp-rang">Rang 10</div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-orga">Marabunta Grande</div>
+      <div class="xp-rang">Rang 10</div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-orga">Bloods</div>
+      <div class="xp-rang">Rang 10</div>
+    </div>
+    <div class="xp-item">
+      <div class="xp-orga">Weitere Organisationen</div>
+      <div class="xp-rang">Rang 10</div>
+    </div>
+  </div>
+</section>
 
 <!-- 04 -->
-<div class="kap" id="rp">
-  <span class="kap-num">// 04</span>
-  <div class="kap-title">RP Verbesserungen</div>
-  <hr class="kap-rule">
-  <div class="rp-list">
-    <div class="rp">
+<section id="rp">
+  <div class="ch">
+    <span class="ch-num">// 04</span>
+    <div class="ch-title">RP Verbesserungen</div>
+  </div>
+  <div class="rp-cards">
+    <div class="rp-c">
       <div class="rp-n">01</div>
       <div class="rp-body">
-        <div class="rp-t">Ghetto-Präsenz &amp; Zinken</div>
-        <div class="rp-p">Aktives Zinken mit der ganzen Masse, starke Präsenz im Ghetto. Sprayen für Gebietssicherung — jeden Tag als dominante Kraft da sein.</div>
+        <div class="rp-title">Ghetto-Präsenz &amp; Zinken</div>
+        <div class="rp-txt">Aktives Zinken mit der gesamten Masse, starke Präsenz im Ghetto gegenüber anderen Gangs. Aktives Sprayen zur Gebietssicherung — jeden Tag als dominante Kraft spürbar sein.</div>
       </div>
     </div>
-    <div class="rp">
+    <div class="rp-c">
       <div class="rp-n">02</div>
       <div class="rp-body">
-        <div class="rp-t">Events &amp; Aktionen</div>
-        <div class="rp-p">Interne Events und Events mit anderen Gangs. Täglich: Fort Zancudo, Bankraub, Konvoi-Angriffe, Ghettostreifen.</div>
+        <div class="rp-title">Events &amp; Aktionen</div>
+        <div class="rp-txt">Regelmäßige interne Events sowie Events mit anderen Gangs. Täglich Pflichtevents: Fort Zancudo, Bankraub, Konvoi-Angriffe, Ghettostreifen.</div>
       </div>
     </div>
-    <div class="rp">
+    <div class="rp-c">
       <div class="rp-n">03</div>
       <div class="rp-body">
-        <div class="rp-t">Einnahmen &amp; Macht</div>
-        <div class="rp-p">Geiselnahmen und Shopraubs als feste Einnahmequellen. Ziel: Vagos als gefürchtete Macht auf Grand RP etablieren.</div>
+        <div class="rp-title">Einnahmen &amp; Macht</div>
+        <div class="rp-txt">Geiselnahmen und Shopraubs als feste Einnahmequellen. Ziel: Die Vagos als gefürchtete Macht auf Grand RP dauerhaft etablieren.</div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- 05 -->
-<div class="kap" id="ranks">
-  <span class="kap-num">// 05</span>
-  <div class="kap-title">Rangkonzept</div>
-  <hr class="kap-rule">
-  <div class="rang-list">
-    <div class="ri top"><div class="ri-n">12</div><div class="ri-name">OG</div><div class="ri-desc">Leader</div></div>
+<section id="ranks">
+  <div class="ch">
+    <span class="ch-num">// 05</span>
+    <div class="ch-title">Rangkonzept</div>
+  </div>
+  <div class="rang-wrap">
+    <div class="ri top"><div class="ri-n">12</div><div class="ri-name">OG</div><div class="ri-desc">Leader der Organisation</div></div>
     <div class="ri top"><div class="ri-n">11</div><div class="ri-name">Vize-OG</div><div class="ri-desc">Unterstützt den OG</div></div>
-    <div class="ri"><div class="ri-n">10</div><div class="ri-name">Mastermind Gangster</div><div class="ri-desc">Callt Events, trägt Verantwortung</div></div>
-    <div class="ri"><div class="ri-n">09</div><div class="ri-name">Instructor</div><div class="ri-desc">Nimmt Bewerber auf</div></div>
-    <div class="ri"><div class="ri-n">08</div><div class="ri-name">Turf-Leader</div><div class="ri-desc">Leitet Turf Team</div></div>
-    <div class="ri"><div class="ri-n">07</div><div class="ri-name">Turfer</div><div class="ri-desc">Erobert Gebiete</div></div>
+    <div class="ri"><div class="ri-n">10</div><div class="ri-name">Mastermind Gangster</div><div class="ri-desc">Callt Events, trägt Mitverantwortung</div></div>
+    <div class="ri"><div class="ri-n">09</div><div class="ri-name">Instructor</div><div class="ri-desc">Nimmt Bewerber auf, ist Vorbild</div></div>
+    <div class="ri"><div class="ri-n">08</div><div class="ri-name">Turf-Leader</div><div class="ri-desc">Leitet das Turf Team</div></div>
+    <div class="ri"><div class="ri-n">07</div><div class="ri-name">Turfer</div><div class="ri-desc">Erobert Turfgebiete</div></div>
     <div class="ri"><div class="ri-n">06</div><div class="ri-name">Gangster</div><div class="ri-desc">Prägendes Mitglied</div></div>
-    <div class="ri"><div class="ri-n">05</div><div class="ri-name">Big Vagos</div><div class="ri-desc">Darf Zinken</div></div>
+    <div class="ri"><div class="ri-n">05</div><div class="ri-name">Big Vagos</div><div class="ri-desc">Darf Zinken, treues Mitglied</div></div>
     <div class="ri"><div class="ri-n">04</div><div class="ri-name">Lil Vagos</div><div class="ri-desc">Zeigt Aktivität</div></div>
     <div class="ri"><div class="ri-n">03</div><div class="ri-name">Member</div><div class="ri-desc">Hat sich bewiesen</div></div>
     <div class="ri"><div class="ri-n">02</div><div class="ri-name">Runner</div><div class="ri-desc">Neuling</div></div>
-    <div class="ri rot"><div class="ri-n">01</div><div class="ri-name">Snitch</div><div class="ri-desc">Strafrang</div></div>
+    <div class="ri snitch"><div class="ri-n">01</div><div class="ri-name">Snitch</div><div class="ri-desc">Strafrang</div></div>
   </div>
-</div>
+</section>
 
 <!-- 06 -->
-<div class="kap" id="beitritt">
-  <span class="kap-num">// 06</span>
-  <div class="kap-title">Beitrittskriterien</div>
-  <hr class="kap-rule">
-  <div class="beit">
-    <div class="beit-item"><span class="beit-arr">→</span>Mindestens Visumsstufe 5</div>
-    <div class="beit-item"><span class="beit-arr">→</span>Mindestens Level 2 Rucksack</div>
-    <div class="beit-item"><span class="beit-arr">→</span>Gute Kenntnisse des Regelwerks — Ausbildungsgespräch Pflicht</div>
-    <div class="beit-item"><span class="beit-arr">→</span>Geistige Reife und verantwortungsbewusstes Auftreten</div>
+<section id="beitritt">
+  <div class="ch">
+    <span class="ch-num">// 06</span>
+    <div class="ch-title">Beitrittskriterien</div>
   </div>
-</div>
-
-</div><!-- /page -->
+  <div class="beitritt-list">
+    <div class="bi"><span class="bi-bullet">→</span>Mindestens Visumsstufe 5</div>
+    <div class="bi"><span class="bi-bullet">→</span>Mindestens Level 2 Rucksack</div>
+    <div class="bi"><span class="bi-bullet">→</span>Gute Kenntnisse des Regelwerks — Ausbildungsgespräch ist Pflicht</div>
+    <div class="bi"><span class="bi-bullet">→</span>Geistige Reife und verantwortungsbewusstes Auftreten</div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="fi">
-    <div class="ft">Los Santos<br><span>Vagos</span></div>
-    <div class="fd">
+  <div class="footer-inner">
+    <div class="footer-gang">Los Santos<br><span>Vagos</span></div>
+    <div class="footer-details">
       Bewerbung von Marvin · Marvin Benko<br>
-      Pass #158679 · Discord marvinbb · Visum 45<br>
+      Reisepass #158679 · Discord marvinbb · Visum 45<br>
       Vagos for life. 💀
     </div>
   </div>
 </footer>
 
 <script>
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
-},{threshold:0.06});
-document.querySelectorAll('.kap').forEach(k=>obs.observe(k));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('section').forEach(s => obs.observe(s));
 </script>
 </body>
 </html>
