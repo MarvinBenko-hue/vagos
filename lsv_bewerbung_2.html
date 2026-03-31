@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bewerbung – Leader der Los Santos Vagos</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lsv-yellow: #f5c800;
+    --lsv-bright: #ffe033;
+    --lsv-dark: #0d0a00;
+    --lsv-mid: #1a1500;
+    --lsv-card: #141100;
+    --lsv-accent: #ffd700;
+    --lsv-orange: #e07800;
+    --lsv-text: #e8d88a;
+    --lsv-muted: #8a7a3a;
+    --lsv-white: #fff8e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--lsv-dark); color: var(--lsv-text); font-family: 'Barlow Condensed', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.5; }
+
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; background: radial-gradient(ellipse 70% 55% at 50% 40%, rgba(245,200,0,0.18) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 50% 60%, rgba(224,120,0,0.1) 0%, transparent 60%), linear-gradient(180deg, #000 0%, var(--lsv-dark) 100%); padding: 60px 20px; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(245,200,0,0.012) 40px, rgba(245,200,0,0.012) 41px); pointer-events: none; }
+
+  /* UPLOADED LOGOS in hero */
+  .hero-logos { display: flex; gap: 36px; align-items: center; justify-content: center; margin-bottom: 24px; opacity: 0; animation: fadeUp 0.6s 0.1s forwards; flex-wrap: wrap; }
+  .hero-logo { width: 100px; height: 100px; object-fit: contain; filter: drop-shadow(0 0 18px rgba(245,200,0,0.55)); transition: transform 0.3s; border-radius: 8px; }
+  .hero-logo:hover { transform: scale(1.1) rotate(-3deg); }
+  .hero-logo.main { width: 130px; height: 130px; filter: drop-shadow(0 0 28px rgba(245,200,0,0.75)); }
+
+  .hero-tag { font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.35em; color: var(--lsv-orange); text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 0.6s 0.25s forwards; }
+  .hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 10vw, 8rem); line-height: 0.88; letter-spacing: 0.06em; color: #fff; text-shadow: 0 0 40px rgba(245,200,0,0.5), 0 0 80px rgba(245,200,0,0.2), 3px 3px 0px rgba(224,120,0,0.4); opacity: 0; animation: fadeUp 0.7s 0.35s forwards; }
+  .hero-title span { color: var(--lsv-yellow); display: block; }
+  .hero-gang { font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.5rem, 4vw, 2.8rem); letter-spacing: 0.2em; color: var(--lsv-orange); margin-top: 8px; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; text-shadow: 0 0 20px rgba(224,120,0,0.4); }
+  .hero-divider { width: 160px; height: 2px; background: linear-gradient(90deg, transparent, var(--lsv-yellow), transparent); margin: 28px auto; opacity: 0; animation: fadeUp 0.6s 0.7s forwards; }
+  .hero-info { display: flex; gap: 36px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: fadeUp 0.7s 0.9s forwards; }
+  .hero-info-item { text-align: center; }
+  .hero-info-item .label { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--lsv-muted); text-transform: uppercase; margin-bottom: 4px; }
+  .hero-info-item .value { font-size: 1.1rem; font-weight: 700; color: var(--lsv-accent); letter-spacing: 0.08em; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(13,10,0,0.93); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(245,200,0,0.18); padding: 0 40px; display: flex; align-items: center; overflow-x: auto; }
+  nav a { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lsv-muted); text-decoration: none; padding: 15px 18px; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  nav a:hover { color: var(--lsv-yellow); border-bottom-color: var(--lsv-yellow); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; color: var(--lsv-yellow); letter-spacing: 0.12em; margin-right: 20px; flex-shrink: 0; text-shadow: 0 0 12px rgba(245,200,0,0.4); }
+
+  section { max-width: 1100px; margin: 0 auto; padding: 80px 30px; opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
+  section.visible { opacity: 1; transform: none; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 44px; }
+  .section-num { font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; color: var(--lsv-orange); letter-spacing: 0.2em; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: 0.08em; color: #fff; line-height: 1; }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(245,200,0,0.35), transparent); margin-left: 16px; }
+
+  .card { background: var(--lsv-card); border: 1px solid rgba(245,200,0,0.1); border-left: 3px solid var(--lsv-yellow); padding: 26px 30px; margin-bottom: 18px; position: relative; transition: border-color 0.2s, box-shadow 0.2s; }
+  .card:hover { border-left-color: var(--lsv-bright); box-shadow: 0 0 28px rgba(245,200,0,0.07); }
+  .card-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: rgba(245,200,0,0.06); position: absolute; top: 6px; right: 18px; line-height: 1; pointer-events: none; }
+  .card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; letter-spacing: 0.1em; color: var(--lsv-yellow); margin-bottom: 10px; }
+  .card p { font-size: 0.95rem; line-height: 1.75; color: var(--lsv-text); font-weight: 300; }
+
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .profile-item { background: var(--lsv-card); border: 1px solid rgba(245,200,0,0.08); padding: 18px 22px; display: flex; flex-direction: column; gap: 4px; transition: background 0.2s; }
+  .profile-item:hover { background: rgba(245,200,0,0.03); }
+  .profile-item .key { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--lsv-muted); text-transform: uppercase; }
+  .profile-item .val { font-size: 1.1rem; font-weight: 700; color: var(--lsv-white); letter-spacing: 0.04em; }
+
+  .quote-block { border-left: 3px solid var(--lsv-yellow); padding: 18px 26px; margin: 28px 0; background: rgba(245,200,0,0.04); font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.1rem, 2.8vw, 1.7rem); letter-spacing: 0.07em; color: var(--lsv-accent); line-height: 1.35; }
+
+  .goals { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .goal { background: transparent; border: 1px solid rgba(245,200,0,0.22); color: var(--lsv-text); font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; padding: 7px 14px; text-transform: uppercase; transition: all 0.2s; cursor: default; }
+  .goal:hover { background: rgba(245,200,0,0.08); border-color: var(--lsv-yellow); color: var(--lsv-yellow); }
+
+  /* XP TABLE */
+  .xp-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  .xp-table th { font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--lsv-muted); text-transform: uppercase; text-align: left; padding: 12px 16px; border-bottom: 1px solid rgba(245,200,0,0.15); }
+  .xp-table td { padding: 13px 16px; font-size: 0.92rem; border-bottom: 1px solid rgba(245,200,0,0.06); color: var(--lsv-text); }
+  .xp-table tr:last-child td { border-bottom: none; }
+  .xp-table tr:hover td { background: rgba(245,200,0,0.03); }
+  .cat-row td { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; letter-spacing: 0.15em; padding: 14px 16px 8px; }
+  .cat-gang td { color: var(--lsv-yellow); background: rgba(245,200,0,0.05); }
+
+  .rank-badge { display: inline-block; background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.3); color: var(--lsv-accent); font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; padding: 3px 10px; letter-spacing: 0.1em; }
+  .rank-badge.vize { background: rgba(245,200,0,0.2); border-color: var(--lsv-yellow); color: #fff; font-weight: bold; }
+
+  /* SECTION IMAGE DIVIDER */
+  .img-divider { display: flex; justify-content: center; align-items: center; gap: 28px; padding: 20px 0 40px; flex-wrap: wrap; }
+  .img-divider img { height: 90px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(245,200,0,0.45)); opacity: 0.85; transition: opacity 0.2s, transform 0.2s; border-radius: 6px; background: rgba(0,0,0,0.3); padding: 6px; }
+  .img-divider img:hover { opacity: 1; transform: scale(1.07); }
+
+  /* RANK LIST */
+  .rank-list { display: flex; flex-direction: column; gap: 2px; }
+  .rank-row { display: flex; align-items: center; gap: 14px; padding: 11px 18px; background: var(--lsv-card); border: 1px solid rgba(245,200,0,0.07); transition: all 0.2s; }
+  .rank-row:hover { border-color: rgba(245,200,0,0.22); transform: translateX(4px); }
+  .rank-row.top { border-left: 3px solid var(--lsv-yellow); background: rgba(245,200,0,0.04); }
+  .rank-row.top .rank-n { color: var(--lsv-yellow); }
+  .rank-n { font-family: 'Bebas Neue', sans-serif; font-size: 1.55rem; color: rgba(245,200,0,0.25); width: 38px; flex-shrink: 0; text-align: right; }
+  .rank-name { font-size: 0.98rem; font-weight: 600; color: var(--lsv-white); letter-spacing: 0.04em; min-width: 180px; }
+  .rank-desc { font-family: 'Share Tech Mono', monospace; font-size: 0.66rem; color: var(--lsv-muted); letter-spacing: 0.07em; margin-left: auto; text-align: right; max-width: 420px; }
+
+  .criteria { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .criteria-item { display: flex; align-items: flex-start; gap: 14px; padding: 14px 20px; background: var(--lsv-card); border: 1px solid rgba(245,200,0,0.08); border-left: 3px solid var(--lsv-orange); font-size: 0.95rem; color: var(--lsv-text); line-height: 1.5; }
+  .criteria-item::before { content: '✦'; color: var(--lsv-yellow); font-size: 0.8rem; flex-shrink: 0; margin-top: 2px; }
+
+  footer { border-top: 1px solid rgba(245,200,0,0.15); padding: 50px 30px 40px; text-align: center; }
+  .footer-logos { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+  .footer-logos img { height: 55px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(245,200,0,0.3)); opacity: 0.65; transition: opacity 0.2s; border-radius: 4px; }
+  .footer-logos img:hover { opacity: 1; }
+  footer .footer-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: 0.22em; color: var(--lsv-yellow); text-shadow: 0 0 30px rgba(245,200,0,0.4); }
+  footer p { font-family: 'Share Tech Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; color: var(--lsv-muted); margin-top: 10px; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--lsv-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--lsv-yellow); }
+  @media (max-width: 600px) { .profile-grid { grid-template-columns: 1fr; } .rank-desc { display: none; } nav { padding: 0 12px; } nav a { padding: 13px 10px; font-size: 0.58rem; } .hero-logo { width: 65px; height: 65px; } .hero-logo.main { width: 85px; height: 85px; } }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logos">
+    <img class="hero-logo" src="https://i.imgur.com/LOSVAGOSGFX1.png" onerror="this.style.display='none'" alt="">
+    <!-- Skull Sombrero Logo als Fallback Emoji wenn Bild nicht lädt -->
+    <div style="font-size:5.5rem;filter:drop-shadow(0 0 22px rgba(245,200,0,0.65));line-height:1;">💀</div>
+    <img class="hero-logo" src="https://i.imgur.com/LOSVAGOSGFX2.png" onerror="this.style.display='none'" alt="">
+  </div>
+  <div class="hero-tag">// Grand RP — Offizielles Dokument</div>
+  <h1 class="hero-title">Bewerbung<br><span>Leader</span></h1>
+  <div class="hero-gang">Los Santos Vagos</div>
+  <div class="hero-divider"></div>
+  <div class="hero-info">
+    <div class="hero-info-item"><div class="label">OOC Name</div><div class="value">Marvin</div></div>
+    <div class="hero-info-item"><div class="label">IC Name</div><div class="value">Marvin Benko</div></div>
+    <div class="hero-info-item"><div class="label">Reisepass</div><div class="value">#158679</div></div>
+    <div class="hero-info-item"><div class="label">Discord</div><div class="value">marvinbb</div></div>
+    <div class="hero-info-item"><div class="label">Visum</div><div class="value">45</div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">LSV</div>
+  <a href="#about">01 Über mich</a>
+  <a href="#why">02 Warum Leader</a>
+  <a href="#xp">03 Erfahrung</a>
+  <a href="#rp">04 RP-Konzept</a>
+  <a href="#ranks">05 Rangkonzept</a>
+  <a href="#criteria">06 Beitritt</a>
+</nav>
+
+<!-- 01 ÜBER MICH -->
+<section id="about">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Über Mich</h2><div class="section-line"></div></div>
+  <div class="profile-grid">
+    <div class="profile-item"><span class="key">Reallife Name</span><span class="val">Marvin</span></div>
+    <div class="profile-item"><span class="key">Alter</span><span class="val">17</span></div>
+    <div class="profile-item"><span class="key">IC Name</span><span class="val">Marvin Benko</span></div>
+    <div class="profile-item"><span class="key">Reisepass Nr.</span><span class="val">#158679</span></div>
+    <div class="profile-item"><span class="key">Discord</span><span class="val">marvinbb</span></div>
+    <div class="profile-item"><span class="key">Visumsstufe</span><span class="val">45</span></div>
+  </div>
+</section>
+
+<!-- 02 WARUM LEADER -->
+<section id="why">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Warum möchte ich Leader werden</h2><div class="section-line"></div></div>
+  <div class="quote-block">"Mit mir an der Spitze wird es keine Schwächen geben — nur Fortschritt, Stärke und Respekt."</div>
+  <div class="card">
+    <div class="card-num">02</div>
+    <p>Ich bin bereit, die Verantwortung zu tragen, die unsere Gang braucht, um stärker, vereinter und respektierter zu werden. Als Leader bringe ich nicht nur Entschlossenheit und Mut mit, sondern auch die Fähigkeit, kluge Entscheidungen zu treffen, die uns voranbringen. Ich kenne unsere Werte und Ziele und weiß, wie wichtig Zusammenhalt und Loyalität in jeder Situation sind. Ich stehe für jeden in unserer Familie ein und kämpfe dafür, dass wir unseren Einfluss sichern und ausbauen. Gemeinsam können wir alles erreichen — mit Stolz, mit Herz, mit den Vagos.</p>
+    <div class="goals">
+      <span class="goal">🤝 Zusammenhalt & Loyalität</span>
+      <span class="goal">💛 Respekt sichern</span>
+      <span class="goal">📈 Einfluss ausbauen</span>
+      <span class="goal">🏴 Ghetto kontrollieren</span>
+      <span class="goal">💪 Stärke zeigen</span>
+    </div>
+  </div>
+</section>
+
+<!-- 03 ERFAHRUNG -->
+<section id="xp">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Meine Erfahrung</h2><div class="section-line"></div></div>
+  <p style="font-size:0.95rem;line-height:1.8;margin-bottom:28px;color:var(--lsv-text);">
+    Ich habe in zahlreichen Organisationen auf Grand RP Erfahrung gesammelt und dabei stets hohe Ränge erreicht.
+    Zweimal durfte ich als <strong style="color:var(--lsv-yellow);">Vize-Leader (Rang 11)</strong> fungieren —
+    bei den Grove Street Families und bei den Los Santos Vagos. Das zeigt, dass mir Vertrauen und Verantwortung
+    nicht fremd sind.
+  </p>
+  <table class="xp-table">
+    <thead><tr><th>Kategorie</th><th>Organisation</th><th>Rang</th></tr></thead>
+    <tbody>
+      <tr class="cat-row cat-gang"><td colspan="3">⚔️ GANG / KRIMINELL</td></tr>
+      <tr><td>Gang</td><td>Los Santos Vagos</td><td><span class="rank-badge vize">RANG 11 — VIZE LEADER</span></td></tr>
+      <tr><td>Gang</td><td>Grove Street Families</td><td><span class="rank-badge vize">RANG 11 — VIZE LEADER</span></td></tr>
+      <tr><td>Gang</td><td>Ballas</td><td><span class="rank-badge">RANG 10</span></td></tr>
+      <tr><td>Gang</td><td>Marabunta Grande</td><td><span class="rank-badge">RANG 10</span></td></tr>
+      <tr><td>Gang</td><td>Bloods</td><td><span class="rank-badge">RANG 10</span></td></tr>
+      <tr><td>Gang</td><td>Weitere Organisationen</td><td><span class="rank-badge">RANG 10</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 04 RP-KONZEPT -->
+<section id="rp">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Vorschläge zur RP-Verbesserung</h2><div class="section-line"></div></div>
+  <div class="card"><div class="card-num">01</div><div class="card-title">Aktives Zinken & Ghetto-Präsenz</div><p>Aktives Zinken mit der gesamten Masse sowie starke Präsenz im Ghetto gegenüber anderen Gangs und Organisationen. Aktives Sprayen zur Gebietssicherung — wir sollen jeden Tag als dominante Kraft spürbar sein.</p></div>
+  <div class="card"><div class="card-num">02</div><div class="card-title">Events & Veranstaltungen</div><p>Regelmäßige interne Events sowie gemeinsame Veranstaltungen mit anderen Gangs planen. Täglich die Pflichtevents durchführen — Fort Zancudo, Bankraub und Konvoi-Angriffe sowie aktive Ghettostreifen.</p></div>
+  <div class="card"><div class="card-num">03</div><div class="card-title">Aktionen & Einnahmen</div><p>Geiselnahmen und Shopraubs als feste Einnahmequellen etablieren. Konvois sowie Ghettostreifen aktiv angreifen. Langfristiges Ziel: Die Vagos als mächtige Kraft auf Grand RP dauerhaft etablieren.</p></div>
+</section>
+
+<!-- 05 RANGKONZEPT -->
+<section id="ranks">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Rangkonzept</h2><div class="section-line"></div></div>
+  <div class="rank-list">
+    <div class="rank-row top"><div class="rank-n">12</div><div class="rank-name">OG</div><div class="rank-desc">Leader der Organisation</div></div>
+    <div class="rank-row top"><div class="rank-n">11</div><div class="rank-name">Vize-OG</div><div class="rank-desc">Unterstützt den OG</div></div>
+    <div class="rank-row"><div class="rank-n">10</div><div class="rank-name">Mastermind Gangster</div><div class="rank-desc">Callt Events & Ghetto, trägt Mitverantwortung</div></div>
+    <div class="rank-row"><div class="rank-n">09</div><div class="rank-name">Instructor</div><div class="rank-desc">Nimmt Bewerber auf, zeigt sich als Vorbild</div></div>
+    <div class="rank-row"><div class="rank-n">08</div><div class="rank-name">Turf-Leader</div><div class="rank-desc">Leitet das Turf Team</div></div>
+    <div class="rank-row"><div class="rank-n">07</div><div class="rank-name">Turfer</div><div class="rank-desc">Zuständig für die Eroberung von Turfgebieten</div></div>
+    <div class="rank-row"><div class="rank-n">06</div><div class="rank-name">Gangster</div><div class="rank-desc">Prägendes Mitglied der Orga</div></div>
+    <div class="rank-row"><div class="rank-n">05</div><div class="rank-name">Big Vagos</div><div class="rank-desc">Darf Zinken, bewiesenes treues Mitglied</div></div>
+    <div class="rank-row"><div class="rank-n">04</div><div class="rank-name">Lil Vagos</div><div class="rank-desc">Zeigt Aktivität und Verantwortungsbewusstsein</div></div>
+    <div class="rank-row"><div class="rank-n">03</div><div class="rank-name">Member</div><div class="rank-desc">Hat sich als Mitglied bewiesen</div></div>
+    <div class="rank-row"><div class="rank-n">02</div><div class="rank-name">Runner</div><div class="rank-desc">Neuling, muss sich beweisen</div></div>
+    <div class="rank-row" style="border-left:3px solid #c0392b;background:rgba(192,57,43,0.05);">
+      <div class="rank-n" style="color:#c0392b;">01</div><div class="rank-name">Snitch</div><div class="rank-desc" style="color:#c0392b;">Strafrang</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 BEITRITTSKRITERIEN -->
+<section id="criteria">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Beitrittskriterien</h2><div class="section-line"></div></div>
+  <div class="criteria">
+    <div class="criteria-item">Mindestens Visumsstufe 5</div>
+    <div class="criteria-item">Mindestens Level 2 Rucksack</div>
+    <div class="criteria-item">Gute Kenntnisse des Regelwerks — Ausbildungsgespräch ist Pflicht</div>
+    <div class="criteria-item">Geistige Reife und verantwortungsbewusstes Auftreten</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:3.5rem;margin-bottom:12px;filter:drop-shadow(0 0 16px rgba(245,200,0,0.5))">💀</div>
+  <div class="footer-title">Los Santos Vagos</div>
+  <p>// Bewerbung eingereicht von Marvin · Marvin Benko · #158679</p>
+  <p style="margin-top:6px;">Vagos for life.</p>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  sections.forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
